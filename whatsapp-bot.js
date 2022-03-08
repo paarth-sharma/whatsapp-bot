@@ -14,16 +14,16 @@ const puppeteer = require("puppeteer");
 
         //Navigates to Whatsapp
         await page.goto("https://web.whatsapp.com/");
-        await page.waitForSelector("._1MXsz");
+        await page.waitForSelector("._3hKpJ");
         await delay(5000);
 
         //Change to contact you want to send messages to
         const contactName = "ACM WhatsApp bot";
         await page.click(`span[title='${contactName}']`);
-        await page.waitForSelector("._3uMse");
+        await page.waitForSelector("._1LbR4");
 
         //Finds the message bar and focuses on it
-        const editor = await page.$("div[data-tab='1']"); //whatsapp web has div "data-tab=1" for message inputs
+        const editor = await page.$("div[data-tab='10']"); //whatsapp web has div "data-tab=1" for message inputs
         await editor.focus();
 
         //Amount of messages you want to send
