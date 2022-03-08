@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer")
+const puppeteer = require("puppeteer");
 
 // need to make an asynchronus function - i.e. bot has to wait for things to happen
 (async function main(){
