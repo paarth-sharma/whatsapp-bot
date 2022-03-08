@@ -1,0 +1,22 @@
+{
+  "name": "whatsapp-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "whatsapp-bot.js",
+  "scripts": {
+    "test": "hello"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paarth-sharma/whatsapp-bot.git"
+  },
+  "author": "paarth-sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paarth-sharma/whatsapp-bot/issues"
+  },
+  "homepage": "https://github.com/paarth-sharma/whatsapp-bot#readme",
+  "dependencies": {
+    "puppeteer": "^13.5.0"
+  }
+}
