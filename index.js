@@ -1,7 +1,24 @@
 const puppeteer = require("puppeteer");
+const mongoose = require("mongoose");
+require('dotenv').config();
 
+const connect = require('./dbConnection/connect');
+const userModel = require('./models/userModel');
 // need to make an asynchronus function - i.e. bot has to wait for things to happen
-(async function main(){
+(async function () {
+    connect(process.env.mongoUri)
+    console.log('dbConnected')
+
+})();
+(async function () {
+
+    const data = await userModel.find()
+    // const data = await userModel.create({ name: "abcd" })
+    console.log(data)
+
+})();
+
+(async function main() {
 
     try {
         // Configures puppeteer
@@ -9,7 +26,7 @@ const puppeteer = require("puppeteer");
         const page = await browser.newPage();
 
         await page.setUserAgent(
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
         );
 
         //Navigates to Whatsapp
@@ -18,7 +35,7 @@ const puppeteer = require("puppeteer");
         await delay(5000);
 
         //Change to contact you want to send messages to
-        const contactName = "ACM WhatsApp bot";
+        const contactName = "XYZZZ";
         await page.click(`span[title='${contactName}']`);
         await page.waitForSelector("._1LbR4");
 
@@ -30,17 +47,18 @@ const puppeteer = require("puppeteer");
         await page.evaluate(() => {
 
             // greeting array
-            var greetings = ["hbd", "happy birthday", "Wishing you a prosperous year ahead", 
-            "hope you got the money", "party when ?", "happy bday"];
+            var greetings = ["hbd", "happy birthday", "Wishing you a prosperous year ahead",
+                "hope you got the money", "party when ?", "happy bday"];
 
             var randGreet = greetings[Math.floor(Math.random() * greetings.length)];
 
+            // document.execCommand("insertText", false, randGreet);
             document.execCommand("insertText", false, randGreet);
         });
         await page.click("span[data-testid='send']");
         await delay(500);
-        
-        }
+
+    }
 
     catch (e) {
         console.error("error mine", e); // logging errors; keeping track
@@ -51,6 +69,6 @@ const puppeteer = require("puppeteer");
 // function for time delay
 function delay(time) {
     return new Promise(function (resolve) {
-      setTimeout(resolve, time);
+        setTimeout(resolve, time);
     });
-  }
+}
