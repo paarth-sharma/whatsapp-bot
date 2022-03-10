@@ -26,18 +26,20 @@ const puppeteer = require("puppeteer");
         const editor = await page.$("div[data-tab='10']"); //whatsapp web has div "data-tab=1" for message inputs
         await editor.focus();
 
-        //Amount of messages you want to send
-        const amountOfMessages = 20;
+        // display message
+        await page.evaluate(() => {
 
-        //Loops through cycle of sending message
-        for (var i = 0; i < amountOfMessages; i++) {
-            await page.evaluate(() => {
-                const message = "Are you mad at me? :( ";
-                document.execCommand("insertText", false, message);
-            });
-            await page.click("span[data-testid='send']");
-            await delay(500);
-            }
+            // greeting array
+            var greetings = ["hbd", "happy birthday", "Wishing you a prosperous year ahead", 
+            "hope you got the money", "party when ?", "happy bday"];
+
+            var randGreet = greetings[Math.floor(Math.random() * greetings.length)];
+
+            document.execCommand("insertText", false, randGreet);
+        });
+        await page.click("span[data-testid='send']");
+        await delay(500);
+        
         }
 
     catch (e) {
