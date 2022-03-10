@@ -13,7 +13,7 @@ const userModel = require('./models/userModel');
 (async function () {
 
     const data = await userModel.find()
-    // const data = await userModel.create({ name: "Rashii" })
+    // const data = await userModel.create({ name: "abcd" })
     console.log(data)
 
 })();
