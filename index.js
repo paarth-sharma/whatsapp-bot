@@ -10,15 +10,28 @@ const userModel = require('./models/userModel');
     console.log('dbConnected')
 
 })();
+
+//getting date
 (async function () {
 
-    const data = await userModel.find()
-    // const data = await userModel.create({ name: "Rashii" })
-    console.log(data)
+    const presentDate = new Date();
 
+    const data = await userModel.find();
+
+    console.log(data);
+    let allDate = data.map(date => date.date)
+    console.log(allDate)
+    for (let i = 0; i < allDate.length; i++) {
+        if (allDate[i].getMonth() === presentDate.getMonth() && allDate[i].getDate() === presentDate.getDate()) {
+            console.log("found")
+            main();
+        } else {
+            console.log("not same")
+        }
+    }
 })();
 
-(async function main() {
+async function main() {
 
     try {
         // Configures puppeteer
@@ -64,7 +77,7 @@ const userModel = require('./models/userModel');
         console.error("error mine", e); // logging errors; keeping track
     }
 
-})();
+}
 
 // function for time delay
 function delay(time) {
