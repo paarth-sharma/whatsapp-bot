@@ -16,7 +16,10 @@ const userModel = require('./models/userModel');
 
     const presentDate = new Date();
 
-    const data = await userModel.find();
+    // const data = await userModel.find();
+    const data = await userModel.find()
+    // const data = await userModel.create({ name: "abcd" })
+    // console.log(data)
 
     console.log(data);
     let allDate = data.map(date => date.date)
